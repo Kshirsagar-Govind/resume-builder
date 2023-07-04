@@ -14,22 +14,22 @@ html{
 }
 
 .page {
-  width: 15.1cm;
-  min-height: 29.7cm;
+  width: 100%;
   border-radius: 5px;
   background: rgb(255, 255, 255);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 .subpage {
-  height: 256mm;
+  height: 295mm;
 }
 
 @page {
   size: A4;
   margin: 0;
+  orientation: portrait;
 }
 @media print {
-  .page {
+  .subpage  {
       margin: 0;
       border: initial;
       border-radius: initial;
@@ -43,5 +43,31 @@ html{
 
 .resume-section{
   height: 100vh;
-  overflow: scroll;
+  overflow-y: auto;
+}
+
+#temp-1-form-section{
+  height: 100vh;
+  overflow: auto;
+  padding-bottom: 50px;
+}
+
+::-webkit-scrollbar-track
+{
+	background-color: rgb(235, 235, 235);
+}
+
+::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+label,input,textarea{
+  font-size: 14px;
 }

@@ -7,9 +7,7 @@ import {
 } from "../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
 
-const ProjectExpComponent = ({ section_id }) => {
-  const [list_styles, setListStyle] = React.useState();
-
+const ContactComponent = ({ section_id }) => {
   const [input, setInputs] = React.useState({
     input_id: 1,
     section_header: "Section Name",
@@ -17,8 +15,9 @@ const ProjectExpComponent = ({ section_id }) => {
     sub_header_detail_1: "header",
   });
 
-  const [section_header, setSection_header] = React.useState("Section Name");
   const [section_align, setSection_Alignment] = React.useState("left");
+
+  const [section_header, setSection_header] = React.useState("Section Name");
 
   const [inputTagsArray, setInputTagsArray] = React.useState([
     {
@@ -32,7 +31,13 @@ const ProjectExpComponent = ({ section_id }) => {
     setInputs({ ...input, [name]: value });
   };
 
-  React.useEffect(() => {}, [input, section_header, inputTagsArray]);
+  React.useEffect(() => {}, [
+    input,
+    section_header,
+    inputTagsArray,
+    section_id,
+    section_align,
+  ]);
 
   const AddNewInputs = () => {
     let input_no = inputTagsArray.length + 1;
@@ -52,10 +57,12 @@ const ProjectExpComponent = ({ section_id }) => {
       (it) => it.input_id != deleted.input_id
     );
     document
-      .getElementById(`${section_id}_subHeaderElement_${deleted.input_id}`)
+      .getElementById(
+        `${section_id}_contactSubHeaderElement_${deleted.input_id}`
+      )
       .remove();
     document
-      .getElementById(`${section_id}_detailsElement_${deleted.input_id}`)
+      .getElementById(`${section_id}_contactDetailsElement_${deleted.input_id}`)
       .remove();
     setInputs({
       ...input,
@@ -64,8 +71,6 @@ const ProjectExpComponent = ({ section_id }) => {
     });
 
     setInputTagsArray(updatedArray);
-    const resumeForm = document.getElementById("template-body-left");
-    console.log(resumeForm);
   };
 
   return (
@@ -89,7 +94,7 @@ const ProjectExpComponent = ({ section_id }) => {
             <div className="w-full inline-flex mb-3" key={idx}>
               <label
                 htmlFor="name"
-                className="p-2 inline-block min-w-fit w-1/2"
+                className="p-2 text-[14px] inline-block min-w-fit w-1/2"
               >
                 Section Sub Header
               </label>
@@ -104,7 +109,7 @@ const ProjectExpComponent = ({ section_id }) => {
               />
             </div>
 
-            <div className=" w-full inline-flex mb-3">
+            <div className="w-full inline-flex mb-3">
               <label
                 htmlFor="name"
                 className="p-2 inline-block min-w-fit w-1/2"
@@ -126,37 +131,40 @@ const ProjectExpComponent = ({ section_id }) => {
         );
       })}
       <div className="flex mt-4">
-        <Tooltip title="Add More Fields">
-          <button
-            className="mr-4 bg-blue-400 p-2 hover:bg-blue-500  hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
-            onClick={() => AddNewInputs()}
-          >
-            <AddFields />
-          </button>
-        </Tooltip>
-        <Tooltip title="Change Position">
-          <button
-            className="mr-4 p-2 bg-gray-500 hover:bg-gray-600 hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
-            onClick={() => {
-              setSection_Alignment(section_align == "left" ? "right" : "left");
-              ChangePosition(
-                section_align == "left" ? "right" : "left",
-                section_id
-              );
-            }}
-          >
-            <PositionSwitch />
-          </button>
-        </Tooltip>
-        <Tooltip title="Delete Fields">
-          <button
-            className="bg-red-400 p-2 disabled:hidden hover:bg-red-500 hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
-            disabled={inputTagsArray.length < 2}
-            onClick={() => DeleteLastInput()}
-          >
-            <DeleteFields />
-          </button>
-        </Tooltip>
+        
+      <Tooltip title="Add More Fields">
+        <button
+          className="mr-4 bg-blue-400 p-2 hover:bg-blue-500  hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
+          onClick={() => AddNewInputs()}
+        >
+          <AddFields />
+        </button>
+      </Tooltip>
+      <Tooltip title="Change Position">
+
+        <button
+          className="mr-4 p-2 bg-gray-500 hover:bg-gray-600 hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
+
+          onClick={() => {
+            setSection_Alignment(section_align == "left" ? "right" : "left");
+            ChangePosition(
+              section_align == "left" ? "right" : "left",
+              section_id
+            );
+          }}
+        >
+          <PositionSwitch />
+        </button>
+      </Tooltip>
+      <Tooltip title="Delete Fields">
+        <button
+          className="bg-red-400 p-2 disabled:hidden hover:bg-red-500 hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
+          disabled={inputTagsArray.length < 2}
+          onClick={() => DeleteLastInput()}
+        >
+          <DeleteFields />
+        </button>
+              </Tooltip>
       </div>
 
       {inputTagsArray.map((item, idx) => {
@@ -170,100 +178,101 @@ const ProjectExpComponent = ({ section_id }) => {
           section_sub_header,
           sub_header_detail,
           item.input_id,
-          section_id
+          section_id,
+          section_align
         );
       })}
     </div>
   );
 };
+export default ContactComponent;
 
 const ProjectExpViewElement = (
   header_para,
   sub_header_para,
   details_para,
   tag_id,
-  section_id
+  section_id,
+  section_align
 ) => {
-  let header = header_para || "Section Header";
-  let sub_header = sub_header_para || "Sub Header";
-  let details = details_para || "some details";
+  let header = header_para || "contact";
+  let sub_header = sub_header_para || "email";
+  let details = details_para || "myname@mail.com";
+  let align = section_align || "right";
 
-  const resumeForm = document.getElementById("template-body-right");
+  const resumeForm = document.getElementById(`template-body-left`);
   let parentDiv;
-  if (!document.getElementById(`${section_id}_ProjectExpComponent`)) {
+  if (!document.getElementById(`${section_id}_ContactComponent`)) {
     parentDiv = document.createElement("div"); // parent div for the input
-    parentDiv.setAttribute("id", `${section_id}_ProjectExpComponent`); // setting the id
+    parentDiv.setAttribute("id", `${section_id}_ContactComponent`); // setting the id
     parentDiv.setAttribute("class", "relative w-auto pb-5");
     const node = document.createTextNode("");
     parentDiv.appendChild(node);
   } else {
-    parentDiv = document.getElementById(`${section_id}_ProjectExpComponent`);
+    parentDiv = document.getElementById(`${section_id}_ContactComponent`);
   }
 
-  if (!document.getElementById(`${section_id}_XpHeaderElement`)) {
+  if (!document.getElementById(`${section_id}_ContactHeaderElement`)) {
     const HeaderElement = document.createElement("h1");
     HeaderElement.setAttribute(
       "class",
       "text-[20px] font-bold text-pink-800 capitalize"
     );
-    HeaderElement.setAttribute("id", `${section_id}_XpHeaderElement`);
+    HeaderElement.setAttribute("id", `${section_id}_ContactHeaderElement`);
     HeaderElement.textContent = `${header}`;
     parentDiv.appendChild(HeaderElement);
   } else {
     document.getElementById(
-      `${section_id}_XpHeaderElement`
+      `${section_id}_ContactHeaderElement`
     ).textContent = `${header}`;
   }
 
-  if (!document.getElementById(section_id + "_subHeaderElement_" + tag_id)) {
+  if (
+    !document.getElementById(section_id + "_contactSubHeaderElement_" + tag_id)
+  ) {
     const subHeaderElement = document.createElement("p");
-    subHeaderElement.setAttribute(
-      "class",
-      "pt-2 text-[18px] font-medium capitalize"
-    );
+    subHeaderElement.setAttribute("class", "pt-2 font-light  text-[16px] capitalize");
     subHeaderElement.setAttribute(
       "id",
-      section_id + "_subHeaderElement_" + tag_id
+      section_id + "_contactSubHeaderElement_" + tag_id
     );
     subHeaderElement.innerHTML = Symbol("point") + `${sub_header}`;
     parentDiv.appendChild(subHeaderElement);
   } else {
     document.getElementById(
-      section_id + "_subHeaderElement_" + tag_id
+      section_id + "_contactSubHeaderElement_" + tag_id
     ).innerHTML = Symbol("point") + `${sub_header}`;
   }
 
-  if (!document.getElementById(section_id + "_detailsElement_" + tag_id)) {
+  if (
+    !document.getElementById(section_id + "_contactDetailsElement_" + tag_id)
+  ) {
     const headerDetail = document.createElement("p");
+    headerDetail.setAttribute("class", "relative font-bold text-[14px] text-justify");
     headerDetail.setAttribute(
-      "class",
-      "pb-2 relative text-[14px] capitalize text-justify text-gray-400 pl-1"
+      "id",
+      section_id + "_contactDetailsElement_" + tag_id
     );
-    headerDetail.setAttribute("id", section_id + "_detailsElement_" + tag_id);
     headerDetail.innerHTML = Symbol("para_space") + `${details}`;
     parentDiv.appendChild(headerDetail);
   } else {
     document.getElementById(
-      section_id + "_detailsElement_" + tag_id
+      section_id + "_contactDetailsElement_" + tag_id
     ).innerHTML = Symbol("para_space") + `${details}`;
   }
 
   if (
     resumeForm &&
-    !document.getElementById(`${section_id}_ProjectExpComponent`)
+    !document.getElementById(`${section_id}_ContactComponent`)
   ) {
     resumeForm.appendChild(parentDiv);
   }
 };
 
-export default ProjectExpComponent;
-
 const ChangePosition = (align, section_id) => {
   const resumeForm_L = document.getElementById(`template-body-left`);
   const resumeForm_R = document.getElementById(`template-body-right`);
-  const parentDiv = document.getElementById(
-    `${section_id}_ProjectExpComponent`
-  );
+  const parentDiv = document.getElementById(`${section_id}_ContactComponent`);
   if (align == "left") {
     resumeForm_L.appendChild(parentDiv);
   } else {
