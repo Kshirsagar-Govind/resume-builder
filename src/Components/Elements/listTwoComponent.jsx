@@ -6,6 +6,7 @@ import {
   PositionSwitch,
 } from "../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
+import { HoverEffectToggle } from "../../Helpers/constants";
 
 const ListTwoComponent = ({ section_id }) => {
   const [section_header, setSection_header] = React.useState("Section Name");
@@ -36,7 +37,10 @@ const ListTwoComponent = ({ section_id }) => {
 
   React.useEffect(() => {}, [listItems, listItemsInput]);
   return (
-    <div id="list-component" className="p-3 w-full">
+    <div id={`${section_id}_list_two_component`} className="p-3 w-full"
+    onMouseEnter={()=>HoverEffectToggle(`${section_id}_ListItemTwoComponent`)}
+    onMouseLeave={()=>HoverEffectToggle(`${section_id}_ListItemTwoComponent`)}
+    >
       <div className=" w-full inline-flex mb-3">
         <label htmlFor="name" className="p-2 inline-block min-w-fit w-1/2">
           Section Header

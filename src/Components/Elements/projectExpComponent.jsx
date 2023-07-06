@@ -6,6 +6,7 @@ import {
   PositionSwitch,
 } from "../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
+import { HoverEffectToggle } from "../../Helpers/constants";
 
 const ProjectExpComponent = ({ section_id }) => {
   const [list_styles, setListStyle] = React.useState();
@@ -69,7 +70,10 @@ const ProjectExpComponent = ({ section_id }) => {
   };
 
   return (
-    <div id="project-exp" className="p-3 w-full">
+    <div id={`${section_id}-project-exp`} className="p-3 w-full"
+    onMouseEnter={()=>HoverEffectToggle(`${section_id}_ProjectExpComponent`)}
+    onMouseLeave={()=>HoverEffectToggle(`${section_id}_ProjectExpComponent`)}
+    >
       <div className=" w-full inline-flex mb-3">
         <label htmlFor="name" className="p-2 inline-block min-w-fit w-1/2">
           Section Header
@@ -188,7 +192,7 @@ const ProjectExpViewElement = (
   let sub_header = sub_header_para || "Sub Header";
   let details = details_para || "some details";
 
-  const resumeForm = document.getElementById("template-body-right");
+  const resumeForm = document.getElementById("template-body-left");
   let parentDiv;
   if (!document.getElementById(`${section_id}_ProjectExpComponent`)) {
     parentDiv = document.createElement("div"); // parent div for the input

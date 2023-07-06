@@ -1,11 +1,12 @@
 import React from "react";
-import { Tick, Symbol } from "../../Assets/symbols";
+import { Symbol, Point } from "../../Assets/symbols";
 import {
   AddFields,
   DeleteFields,
   PositionSwitch,
 } from "../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
+import { HoverEffectToggle } from "../../Helpers/constants";
 
 const ContactComponent = ({ section_id }) => {
   const [input, setInputs] = React.useState({
@@ -74,7 +75,10 @@ const ContactComponent = ({ section_id }) => {
   };
 
   return (
-    <div id="project-exp" className="p-3 w-full">
+    <div id={`${section_id}-project-exp`} className="p-3 w-full"
+    onMouseEnter={()=>HoverEffectToggle(`${section_id}_ContactComponent`)}
+    onMouseLeave={()=>HoverEffectToggle(`${section_id}_ContactComponent`)}
+    >
       <div className=" w-full inline-flex mb-3">
         <label htmlFor="name" className="p-2 inline-block min-w-fit w-1/2">
           Section Header
@@ -236,12 +240,12 @@ const ProjectExpViewElement = (
       "id",
       section_id + "_contactSubHeaderElement_" + tag_id
     );
-    subHeaderElement.innerHTML = Symbol("point") + `${sub_header}`;
+    subHeaderElement.innerHTML = Point("#9D174D") + `${sub_header}`;
     parentDiv.appendChild(subHeaderElement);
   } else {
     document.getElementById(
       section_id + "_contactSubHeaderElement_" + tag_id
-    ).innerHTML = Symbol("point") + `${sub_header}`;
+    ).innerHTML = Point("#9D174D") + `${sub_header}`;
   }
 
   if (

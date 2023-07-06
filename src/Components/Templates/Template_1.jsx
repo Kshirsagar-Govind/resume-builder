@@ -400,8 +400,8 @@ const Page = ({ templateInputs }) => {
             id="temp-1-view-section"
             className="printhis realtive w-full h-full"
           >
-            <div className="bg-pink-800 h-[10%] px-5">
-              <div className="card p-4">
+            <div className="bg-pink-800 h-[13%] px-10 py-14">
+              <div className="relative card">
                 <h1 className="text-[32px] text-white capitalize">
                   {templateInputs.name || "Your Name"}
                 </h1>
@@ -414,7 +414,7 @@ const Page = ({ templateInputs }) => {
             <div
               id="template-body"
               // style={{ border: "2px solid black" }}
-              className="realtive flex justify-between w-full h-[90%]"
+              className="realtive flex justify-between w-full h-[87%]"
             >
               <div
                 id="template-body-left"
