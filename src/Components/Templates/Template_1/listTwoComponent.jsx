@@ -1,14 +1,14 @@
 import React from "react";
-import { Cross, Symbol, Tick } from "../../Assets/symbols";
+import { Cross, Point, Symbol, Tick } from "../../../Assets/symbols";
 import {
   AddFields,
   DeleteFields,
   PositionSwitch,
-} from "../../Assets/SVG/svgLogos";
+} from "../../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
-import { HoverEffectToggle } from "../../Helpers/constants";
+import { HoverEffectToggle } from "../../../Helpers/constants";
 
-const ListComponent = ({ section_id }) => {
+const ListTwoComponent = ({ section_id }) => {
   const [section_header, setSection_header] = React.useState("Section Name");
   const [section_align, setSection_Alignment] = React.useState("left");
 
@@ -31,15 +31,15 @@ const ListComponent = ({ section_id }) => {
     newArr = listItems.filter((it, idx) => idx + 1 != len);
     setListItems(newArr);
     document
-      .getElementById(`${section_id}_listItemElement_${len - 1}`)
+      .getElementById(`${section_id}_listTwoItemElement_${len - 1}`)
       .remove();
   };
 
   React.useEffect(() => {}, [listItems, listItemsInput]);
   return (
-    <div id={`${section_id}_list_component`} className="p-3 w-full"
-    onMouseEnter={()=>HoverEffectToggle(`${section_id}_ListItemComponent`)}
-    onMouseLeave={()=>HoverEffectToggle(`${section_id}_ListItemComponent`)}
+    <div id={`${section_id}_list_two_component`} className="p-3 w-full"
+    onMouseEnter={()=>HoverEffectToggle(`${section_id}_ListItemTwoComponent`)}
+    onMouseLeave={()=>HoverEffectToggle(`${section_id}_ListItemTwoComponent`)}
     >
       <div className=" w-full inline-flex mb-3">
         <label htmlFor="name" className="p-2 inline-block min-w-fit w-1/2">
@@ -122,42 +122,42 @@ const ListViewComponent = (header_para, details_para, tag_id, section_id) => {
 
   const resumeForm = document.getElementById("template-body-left");
   let parentDiv;
-  if (!document.getElementById(`${section_id}_ListItemComponent`)) {
+  if (!document.getElementById(`${section_id}_ListItemTwoComponent`)) {
     parentDiv = document.createElement("div"); // parent div for the input
-    parentDiv.setAttribute("id", `${section_id}_ListItemComponent`); // setting the id
+    parentDiv.setAttribute("id", `${section_id}_ListItemTwoComponent`); // setting the id
     parentDiv.setAttribute("class", "relative w-auto pb-5");
     const node = document.createTextNode("");
     parentDiv.appendChild(node);
   } else {
-    parentDiv = document.getElementById(`${section_id}_ListItemComponent`);
+    parentDiv = document.getElementById(`${section_id}_ListItemTwoComponent`);
   }
 
-  if (!document.getElementById(`${section_id}_ListHeaderElement`)) {
+  if (!document.getElementById(`${section_id}_ListTwoHeaderElement`)) {
     const HeaderElement = document.createElement("h1");
     HeaderElement.setAttribute(
       "class",
       "text-[20px] font-bold text-pink-800 capitalize"
     );
-    HeaderElement.setAttribute("id", `${section_id}_ListHeaderElement`);
+    HeaderElement.setAttribute("id", `${section_id}_ListTwoHeaderElement`);
     HeaderElement.textContent = `${header}`;
     parentDiv.appendChild(HeaderElement);
   } else {
     document.getElementById(
-      `${section_id}_ListHeaderElement`
+      `${section_id}_ListTwoHeaderElement`
     ).textContent = `${header}`;
   }
   let listContainer;
-  if (!document.getElementById(`${section_id}_ListItemContainer`)) {
+  if (!document.getElementById(`${section_id}_ListTwoItemContainer`)) {
     listContainer = document.createElement("div"); // parent div for the input
-    listContainer.setAttribute("id", `${section_id}_ListItemContainer`); // setting the id
-    listContainer.setAttribute("class", "grid grid-cols-2");
+    listContainer.setAttribute("id", `${section_id}_ListTwoItemContainer`); // setting the id
+    listContainer.setAttribute("class", "grid grid-cols-1");
     const node = document.createTextNode("");
     listContainer.appendChild(node);
   } else {
-    listContainer = document.getElementById(`${section_id}_ListItemContainer`);
+    listContainer = document.getElementById(`${section_id}_ListTwoItemContainer`);
   }
 
-  if (!document.getElementById(section_id + "_listItemElement_" + tag_id)) {
+  if (!document.getElementById(section_id + "_listTwoItemElement_" + tag_id)) {
     const listItemElement = document.createElement("p");
     listItemElement.setAttribute(
       "class",
@@ -165,20 +165,20 @@ const ListViewComponent = (header_para, details_para, tag_id, section_id) => {
     );
     listItemElement.setAttribute(
       "id",
-      section_id + "_listItemElement_" + tag_id
+      section_id + "_listTwoItemElement_" + tag_id
     );
     listItemElement.innerHTML = `${item}`;
     listContainer.appendChild(listItemElement);
     parentDiv.appendChild(listContainer);
   } else {
     document.getElementById(
-      section_id + "_listItemElement_" + tag_id
-    ).innerHTML = Tick('#9D174D') + `${item}`;
+      section_id + "_listTwoItemElement_" + tag_id
+    ).innerHTML = Point('#9D174D') + `${item}`;
   }
 
   if (
     resumeForm &&
-    !document.getElementById(`${section_id}_ListItemComponent`)
+    !document.getElementById(`${section_id}_ListItemTwoComponent`)
   ) {
     resumeForm.appendChild(parentDiv);
   }
@@ -187,7 +187,7 @@ const ListViewComponent = (header_para, details_para, tag_id, section_id) => {
 const ChangePosition = (align, section_id) => {
   const resumeForm_L = document.getElementById(`template-body-left`);
   const resumeForm_R = document.getElementById(`template-body-right`);
-  const parentDiv = document.getElementById(`${section_id}_ListItemComponent`);
+  const parentDiv = document.getElementById(`${section_id}_ListItemTwoComponent`);
   if (align == "left") {
     resumeForm_L.appendChild(parentDiv);
   } else {
@@ -195,4 +195,4 @@ const ChangePosition = (align, section_id) => {
   }
 };
 
-export default ListComponent;
+export default ListTwoComponent;

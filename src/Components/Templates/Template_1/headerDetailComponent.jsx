@@ -1,8 +1,9 @@
 import React from "react";
-import { DeleteSection, PositionSwitch } from "../../Assets/SVG/svgLogos";
+
 import Tooltip from "@mui/material/Tooltip";
 import { hover } from "@testing-library/user-event/dist/hover";
-import { HoverEffectToggle } from "../../Helpers/constants";
+import { HoverEffectToggle } from "../../../Helpers/constants";
+import { PositionSwitch } from "../../../Assets/SVG/svgLogos";
 
 const HeaderDetailsComponent = ({ section_id, deleteMe }) => {
   const [header, setHeader] = React.useState("");

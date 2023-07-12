@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import ProjectExpComponent from "../Elements/projectExpComponent";
-import ListCompnent from "../Elements/listCompnent";
-import HeaderDetailsComponent from "../Elements/headerDetailComponent";
-import ContactComponent from "../Elements/contactComponent";
+import ProjectExpComponent from "./projectExpComponent";
+import ListCompnent from "./listCompnent";
+import HeaderDetailsComponent from "./headerDetailComponent";
+import ContactComponent from "./contactComponent";
 import {
   AddSection,
   ContactsSectionLogo,
@@ -10,10 +10,10 @@ import {
   ListSectionLogo,
   ObjectiveSectionLogo,
   XpSectionLogo,
-} from "../../Assets/SVG/svgLogos";
+} from "../../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
 import ReactToPrint from "react-to-print";
-import ListTwoComponent from "../Elements/listTwoComponent";
+import ListTwoComponent from "./listTwoComponent";
 export default () => {
   const [templateInputs, setTemplateInputs] = React.useState({
     name: "your name here",

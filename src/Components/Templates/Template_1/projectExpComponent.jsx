@@ -1,15 +1,14 @@
 import React from "react";
-import { Tick, Symbol } from "../../Assets/symbols";
+import { Tick, Symbol } from "../../../Assets/symbols";
 import {
   AddFields,
   DeleteFields,
   PositionSwitch,
-} from "../../Assets/SVG/svgLogos";
+} from "../../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
-import { HoverEffectToggle } from "../../Helpers/constants";
+import { HoverEffectToggle } from "../../../Helpers/constants";
 
 const ProjectExpComponent = ({ section_id }) => {
-  const [list_styles, setListStyle] = React.useState();
 
   const [input, setInputs] = React.useState({
     input_id: 1,

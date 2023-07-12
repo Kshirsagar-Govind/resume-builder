@@ -1,12 +1,12 @@
 import React from "react";
-import { Symbol, Point } from "../../Assets/symbols";
+import { Symbol, Point } from "../../../Assets/symbols";
 import {
   AddFields,
   DeleteFields,
   PositionSwitch,
-} from "../../Assets/SVG/svgLogos";
+} from "../../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
-import { HoverEffectToggle } from "../../Helpers/constants";
+import { HoverEffectToggle } from "../../../Helpers/constants";
 
 const ContactComponent = ({ section_id }) => {
   const [input, setInputs] = React.useState({
