@@ -389,11 +389,14 @@ const Page = ({ templateInputs }) => {
   const componentRef = useRef();
 
   return (
-    <div className="px-[50px] py-[26px] bg-gray-300">
+    <div className="relative px-[50px] py-[26px] bg-gray-300">
+      <div className="fixed p-3 px-5 rounded-md bg-black shadow-lg right-[5vw] bottom-10 text-white text-xl">
+
       <ReactToPrint
-        trigger={() => <button>Print this out!</button>}
+        trigger={() => <button>Downloada My Resume</button>}
         content={() => componentRef.current}
-      />
+        />
+        </div>
       <div className="page">
         <div ref={componentRef} className="subpage flex">
           <div
