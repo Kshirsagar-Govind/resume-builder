@@ -13,7 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/templates" element={<TemplatesPage />} />
-          <Route path="/template/edit" element={<TemplateEditPage />} />
+          <Route path="/template/edit/:id" element={<TemplateEditPage />} />
+          {/* <Route path="/" element={<TemplateEditPage />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
