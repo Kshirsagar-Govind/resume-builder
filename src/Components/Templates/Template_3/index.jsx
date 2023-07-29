@@ -3,8 +3,6 @@ import ProjectExpComponent from "./projectExpComponent";
 import ListCompnent from "./listCompnent";
 import HeaderDetailsComponent from "./headerDetailComponent";
 import ContactComponent from "./contactComponent";
-import DefaultProPic from "../../../Assets/default_pic.png";
-
 import {
   AddSection,
   ContactsSectionLogo,
@@ -16,10 +14,11 @@ import {
 import Tooltip from "@mui/material/Tooltip";
 import ReactToPrint from "react-to-print";
 import ListTwoComponent from "./listTwoComponent";
+
 export default () => {
   const [templateInputs, setTemplateInputs] = React.useState({
     name: "your name here",
-    designation: "your role",
+    designation: "Designation",
   });
 
   const handleInputChange = (name, value) => {
@@ -32,7 +31,6 @@ export default () => {
   const [listSection, setListSection] = React.useState([]);
   const [listTwoSection, setListTwoSection] = React.useState([]);
   const [objectiveSection, setObjectiveSection] = React.useState([]);
-  const [profilrPic, setProfilrPic] = React.useState(DefaultProPic);
 
   const addSection = (section_type_id) => {
     let newSection = {
@@ -127,16 +125,6 @@ export default () => {
     console.log(to_be_deleted_section_id, "+_+_+_+");
   };
 
-  const UploadPhoto = (e) => {
-    try {
-      console.log(e.target.files);
-      const objectUrl = URL.createObjectURL(e.target.files[0]);
-      setProfilrPic(objectUrl);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   React.useEffect(() => {
     if (objectiveSection) {
       console.log(objectiveSection);
@@ -175,20 +163,6 @@ export default () => {
                   onChange={(e) =>
                     handleInputChange(e.target.name, e.target.value)
                   }
-                />
-              </div>
-              <div className="w-full inline-flex pb-3">
-                <label
-                  htmlFor="name"
-                  className="py-2 mb-2 inline-block min-w-fit w-1/2"
-                >
-                  Upload Photo
-                </label>
-                <input
-                  type="file"
-                  className="px-2 w-full py-1 outline-none rounded-md"
-                  name="photo"
-                  onChange={(e) => UploadPhoto(e)}
                 />
               </div>
               <div className="w-full inline-flex ">
@@ -404,13 +378,13 @@ export default () => {
         </div>
       </div>
       <div className="resume-section w-2/3">
-        <Page templateInputs={templateInputs} profilrPic={profilrPic} />
+        <Page templateInputs={templateInputs} />
       </div>
     </div>
   );
 };
 
-const Page = ({ templateInputs, profilrPic }) => {
+const Page = ({ templateInputs }) => {
   const componentRef = useRef();
 
   return (
@@ -427,38 +401,31 @@ const Page = ({ templateInputs, profilrPic }) => {
             id="temp-1-view-section"
             className="printhis realtive w-full h-full"
           >
+            <div className=" h-[13%] px-10 py-14">
+              <div className="relative card">
+                <h1 className="text-[32px] text-zinc-600 font-medium capitalize">
+                  {templateInputs.name || "Your Name"}
+                </h1>
+                <h1 className="text-[18px] font-medium text-zinc-400 capitalize">
+                  {templateInputs.designation || "Role or Designation here"}
+                </h1>
+              </div>
+            </div>
+            {/* <div className="divider w-full px-8">
+              <div className="h-4 bg-gradient-to-r rounded-xl from-cyan-800 to-slate-50"></div>
+            </div> */}
             <div
               id="template-body"
-              className="realtive flex justify-between w-full h-full"
+              // style={{ border: "2px solid black" }}
+              className="realtive w-full h-[87%] px-10"
             >
-              <div
-                id="template-body-left"
-                className="w-[70%] bg-indigo-950 h-full px-10"
-              >
-                <div id="sdasd_HeaderDetailComponent" className="h-auto py-14">
-                  <div className="relative user-card justify-center align-middle">
-                    <div className="w-full justify-center">
-                      <div className="m-auto relative h-[150px] w-[150px] rounded-full ">
-                        <img
-                          src={profilrPic}
-                          className="h-[150px] w-[150px] rounded-full"
-                          alt="img"
-                        />
-                      </div>
-                    </div>
-                    <h1 className="text-[32px] text-white text-center capitalize">
-                      {templateInputs.name || "Your Name"}
-                    </h1>
-                    <h1 className="text-[18px] font-light text-white text-center capitalize">
-                      {templateInputs.designation || "Role or Designation here"}
-                    </h1>
-                  </div>
-                </div>
-              </div>
-              <div id="template-body-right" className="w-full p-5 ml-5"></div>
+              {/* <div className="w-full py-2 pl-2 rounded-lg bg-gradient-to-r from-zinc-600  to-slate-50">
+                <h1 className="text-white text-xl">Heading</h1>
+              </div> */}
+              
             </div>
           </div>
-        </div>
+        </div>to-slate-50
       </div>
     </div>
   );

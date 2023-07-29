@@ -4,7 +4,6 @@ import ListCompnent from "./listCompnent";
 import HeaderDetailsComponent from "./headerDetailComponent";
 import ContactComponent from "./contactComponent";
 import DefaultProPic from "../../../Assets/default_pic.png";
-
 import {
   AddSection,
   ContactsSectionLogo,
@@ -16,10 +15,11 @@ import {
 import Tooltip from "@mui/material/Tooltip";
 import ReactToPrint from "react-to-print";
 import ListTwoComponent from "./listTwoComponent";
+
 export default () => {
   const [templateInputs, setTemplateInputs] = React.useState({
     name: "your name here",
-    designation: "your role",
+    designation: "Designation",
   });
 
   const handleInputChange = (name, value) => {
@@ -137,11 +137,7 @@ export default () => {
     }
   };
 
-  React.useEffect(() => {
-    if (objectiveSection) {
-      console.log(objectiveSection);
-    }
-  }, [contactSection, objectiveSection]);
+  React.useEffect(() => {}, [contactSection, objectiveSection, profilrPic]);
 
   return (
     <div className="flex max-w-full  h-screen">
@@ -395,7 +391,10 @@ export default () => {
                 return (
                   <div className="py-3 rounded-[5px] hover:-translate-y-1 hover:bg-slate-300 hover:shadow-lg ease-in duration-100">
                     {" "}
-                    <ContactComponent section_id={id} />{" "}
+                    <ContactComponent
+                      section_id={id}
+                      profilePic={profilrPic}
+                    />{" "}
                   </div>
                 );
               })}
@@ -404,13 +403,13 @@ export default () => {
         </div>
       </div>
       <div className="resume-section w-2/3">
-        <Page templateInputs={templateInputs} profilrPic={profilrPic} />
+        <Page templateInputs={templateInputs} profilePic={profilrPic} />
       </div>
     </div>
   );
 };
 
-const Page = ({ templateInputs, profilrPic }) => {
+const Page = ({ templateInputs, profilePic }) => {
   const componentRef = useRef();
 
   return (
@@ -427,38 +426,40 @@ const Page = ({ templateInputs, profilrPic }) => {
             id="temp-1-view-section"
             className="printhis realtive w-full h-full"
           >
-            <div
-              id="template-body"
-              className="realtive flex justify-between w-full h-full"
-            >
-              <div
-                id="template-body-left"
-                className="w-[70%] bg-indigo-950 h-full px-10"
-              >
-                <div id="sdasd_HeaderDetailComponent" className="h-auto py-14">
-                  <div className="relative user-card justify-center align-middle">
-                    <div className="w-full justify-center">
-                      <div className="m-auto relative h-[150px] w-[150px] rounded-full ">
-                        <img
-                          src={profilrPic}
-                          className="h-[150px] w-[150px] rounded-full"
-                          alt="img"
-                        />
-                      </div>
-                    </div>
-                    <h1 className="text-[32px] text-white text-center capitalize">
-                      {templateInputs.name || "Your Name"}
-                    </h1>
-                    <h1 className="text-[18px] font-light text-white text-center capitalize">
-                      {templateInputs.designation || "Role or Designation here"}
-                    </h1>
-                  </div>
+            <div className=" h-fit px-10 py-10 flex align-middle bg-zinc-700 mb-10">
+              <div className="profile-pic justify-center">
+                <div className="relative h-[120px] w-[120px] rounded-full ">
+                  <img
+                    src={profilePic}
+                    className="h-[120px] w-[120px] rounded-full"
+                    alt="img"
+                  />
                 </div>
               </div>
-              <div id="template-body-right" className="w-full p-5 ml-5"></div>
+              <div className="relative user-card pl-5 h-fit w-full ">
+                <h1 className="text-[32px] text-white font-medium capitalize">
+                  {templateInputs.name || "Your Name"}
+                </h1>
+                <h1 className="text-[18px] font-medium text-white capitalize">
+                  {templateInputs.designation || "Role or Designation here"}
+                </h1>
+              </div>
+            </div>
+            {/* <div className="divider w-full px-8">
+              <div className="h-4 bg-gradient-to-r rounded-xl from-cyan-800 to-slate-50"></div>
+            </div> */}
+            <div
+              id="template-body"
+              // style={{ border: "2px solid black" }}
+              className="realtive w-full h-[87%] px-10"
+            >
+              {/* <div className="w-full py-2 pl-2 rounded-lg bg-gradient-to-r from-zinc-600  to-slate-50">
+                <h1 className="text-white text-xl">Heading</h1>
+              </div> */}
             </div>
           </div>
         </div>
+        to-slate-50
       </div>
     </div>
   );

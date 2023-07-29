@@ -8,6 +8,16 @@ export const HoverEffectToggle = (id) => {
   }
 }
 
+export const HoverEffectToggle_2 = (id) => {
+  const parentDiv = document.getElementById(id)
+
+  if (parentDiv.classList.contains('bg-blue-100')) {
+    parentDiv.classList.remove('bg-blue-100')
+  } else {
+    parentDiv.classList.add('bg-blue-100')
+  }
+}
+
 export const SectionsList = [
   {
     section_type: 10001,

@@ -6,7 +6,7 @@ import {
   PositionSwitch,
 } from "../../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
-import { HoverEffectToggle } from "../../../Helpers/constants";
+import { HoverEffectToggle_2 } from "../../../Helpers/constants";
 
 const ContactComponent = ({ section_id }) => {
   const [input, setInputs] = React.useState({
@@ -76,8 +76,8 @@ const ContactComponent = ({ section_id }) => {
 
   return (
     <div id={`${section_id}-project-exp`} className="p-3 w-full"
-    onMouseEnter={()=>HoverEffectToggle(`${section_id}_ContactComponent`)}
-    onMouseLeave={()=>HoverEffectToggle(`${section_id}_ContactComponent`)}
+    onMouseEnter={()=>HoverEffectToggle_2(`${section_id}_ContactComponent`)}
+    onMouseLeave={()=>HoverEffectToggle_2(`${section_id}_ContactComponent`)}
     >
       <div className=" w-full inline-flex mb-3">
         <label htmlFor="name" className="p-2 inline-block min-w-fit w-1/2">
@@ -204,7 +204,7 @@ const ProjectExpViewElement = (
   let details = details_para || "myname@mail.com";
   let align = section_align || "right";
 
-  const resumeForm = document.getElementById(`template-body-left`);
+  const resumeForm = document.getElementById(`template-body`);
   let parentDiv;
   if (!document.getElementById(`${section_id}_ContactComponent`)) {
     parentDiv = document.createElement("div"); // parent div for the input
@@ -218,13 +218,19 @@ const ProjectExpViewElement = (
 
   if (!document.getElementById(`${section_id}_ContactHeaderElement`)) {
     const HeaderElement = document.createElement("h1");
+    const HeaderElementDiv = document.createElement("div");
+    HeaderElementDiv.setAttribute(
+      "class",
+      "w-full py-2 pl-2 rounded-l-lg bg-gradient-to-r from-zinc-600 to-white to-95%"
+    );
     HeaderElement.setAttribute(
       "class",
-      "text-[20px] font-bold text-white capitalize"
+      "text-xl font-bold text-white capitalize"
     );
     HeaderElement.setAttribute("id", `${section_id}_ContactHeaderElement`);
     HeaderElement.textContent = `${header}`;
-    parentDiv.appendChild(HeaderElement);
+    HeaderElementDiv.appendChild(HeaderElement);
+    parentDiv.appendChild(HeaderElementDiv);
   } else {
     document.getElementById(
       `${section_id}_ContactHeaderElement`
@@ -235,24 +241,24 @@ const ProjectExpViewElement = (
     !document.getElementById(section_id + "_contactSubHeaderElement_" + tag_id)
   ) {
     const subHeaderElement = document.createElement("p");
-    subHeaderElement.setAttribute("class", "pt-2 font-medium text-gray-500 text-[16px] capitalize");
+    subHeaderElement.setAttribute("class", "pt-2 font-light  text-[16px] capitalize");
     subHeaderElement.setAttribute(
       "id",
       section_id + "_contactSubHeaderElement_" + tag_id
     );
-    subHeaderElement.innerHTML = Point("gray") + `${sub_header}`;
+    subHeaderElement.innerHTML = Point("#9D174D") + `${sub_header}`;
     parentDiv.appendChild(subHeaderElement);
   } else {
     document.getElementById(
       section_id + "_contactSubHeaderElement_" + tag_id
-    ).innerHTML = Point("gray") + `${sub_header}`;
+    ).innerHTML = Point("#155E75") + `${sub_header}`;
   }
 
   if (
     !document.getElementById(section_id + "_contactDetailsElement_" + tag_id)
   ) {
     const headerDetail = document.createElement("p");
-    headerDetail.setAttribute("class", "relative font-bold text-[14px] text-gray-500 text-justify");
+    headerDetail.setAttribute("class", "relative font-bold text-[14px] text-justify");
     headerDetail.setAttribute(
       "id",
       section_id + "_contactDetailsElement_" + tag_id
@@ -278,12 +284,8 @@ const ChangePosition = (align, section_id) => {
   const resumeForm_R = document.getElementById(`template-body-right`);
   const parentDiv = document.getElementById(`${section_id}_ContactComponent`);
   if (align == "left") {
-    const _ContactHeaderElement = document.getElementById(`${section_id}_ContactHeaderElement`)
-    _ContactHeaderElement.classList.replace('text-indigo-900','text-white')
     resumeForm_L.appendChild(parentDiv);
   } else {
-    const _ContactHeaderElement = document.getElementById(`${section_id}_ContactHeaderElement`)
-    _ContactHeaderElement.classList.replace('text-white', 'text-indigo-900')
     resumeForm_R.appendChild(parentDiv);
   }
 };

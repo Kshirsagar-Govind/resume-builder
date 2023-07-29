@@ -1,14 +1,15 @@
 import React from "react";
-import { Symbol, Point } from "../../../Assets/symbols";
+import { Tick, Symbol, Point } from "../../../Assets/symbols";
 import {
   AddFields,
   DeleteFields,
   PositionSwitch,
 } from "../../../Assets/SVG/svgLogos";
 import Tooltip from "@mui/material/Tooltip";
-import { HoverEffectToggle } from "../../../Helpers/constants";
+import { HoverEffectToggle_2 } from "../../../Helpers/constants";
 
-const ContactComponent = ({ section_id }) => {
+const ProjectExpComponent = ({ section_id }) => {
+
   const [input, setInputs] = React.useState({
     input_id: 1,
     section_header: "Section Name",
@@ -16,9 +17,8 @@ const ContactComponent = ({ section_id }) => {
     sub_header_detail_1: "header",
   });
 
-  const [section_align, setSection_Alignment] = React.useState("left");
-
   const [section_header, setSection_header] = React.useState("Section Name");
+  const [section_align, setSection_Alignment] = React.useState("left");
 
   const [inputTagsArray, setInputTagsArray] = React.useState([
     {
@@ -32,13 +32,7 @@ const ContactComponent = ({ section_id }) => {
     setInputs({ ...input, [name]: value });
   };
 
-  React.useEffect(() => {}, [
-    input,
-    section_header,
-    inputTagsArray,
-    section_id,
-    section_align,
-  ]);
+  React.useEffect(() => {}, [input, section_header, inputTagsArray]);
 
   const AddNewInputs = () => {
     let input_no = inputTagsArray.length + 1;
@@ -58,12 +52,10 @@ const ContactComponent = ({ section_id }) => {
       (it) => it.input_id != deleted.input_id
     );
     document
-      .getElementById(
-        `${section_id}_contactSubHeaderElement_${deleted.input_id}`
-      )
+      .getElementById(`${section_id}_subHeaderElement_${deleted.input_id}`)
       .remove();
     document
-      .getElementById(`${section_id}_contactDetailsElement_${deleted.input_id}`)
+      .getElementById(`${section_id}_detailsElement_${deleted.input_id}`)
       .remove();
     setInputs({
       ...input,
@@ -72,12 +64,13 @@ const ContactComponent = ({ section_id }) => {
     });
 
     setInputTagsArray(updatedArray);
+    const resumeForm = document.getElementById("template-body");
   };
 
   return (
     <div id={`${section_id}-project-exp`} className="p-3 w-full"
-    onMouseEnter={()=>HoverEffectToggle(`${section_id}_ContactComponent`)}
-    onMouseLeave={()=>HoverEffectToggle(`${section_id}_ContactComponent`)}
+    onMouseEnter={()=>HoverEffectToggle_2(`${section_id}_ProjectExpComponent`)}
+    onMouseLeave={()=>HoverEffectToggle_2(`${section_id}_ProjectExpComponent`)}
     >
       <div className=" w-full inline-flex mb-3">
         <label htmlFor="name" className="p-2 inline-block min-w-fit w-1/2">
@@ -98,7 +91,7 @@ const ContactComponent = ({ section_id }) => {
             <div className="w-full inline-flex mb-3" key={idx}>
               <label
                 htmlFor="name"
-                className="p-2 text-[14px] inline-block min-w-fit w-1/2"
+                className="p-2 inline-block min-w-fit w-1/2"
               >
                 Section Sub Header
               </label>
@@ -113,7 +106,7 @@ const ContactComponent = ({ section_id }) => {
               />
             </div>
 
-            <div className="w-full inline-flex mb-3">
+            <div className=" w-full inline-flex mb-3">
               <label
                 htmlFor="name"
                 className="p-2 inline-block min-w-fit w-1/2"
@@ -135,40 +128,37 @@ const ContactComponent = ({ section_id }) => {
         );
       })}
       <div className="flex mt-4">
-        
-      <Tooltip title="Add More Fields">
-        <button
-          className="mr-4 bg-blue-400 p-2 hover:bg-blue-500  hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
-          onClick={() => AddNewInputs()}
-        >
-          <AddFields />
-        </button>
-      </Tooltip>
-      <Tooltip title="Change Position">
-
-        <button
-          className="mr-4 p-2 bg-gray-500 hover:bg-gray-600 hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
-
-          onClick={() => {
-            setSection_Alignment(section_align == "left" ? "right" : "left");
-            ChangePosition(
-              section_align == "left" ? "right" : "left",
-              section_id
-            );
-          }}
-        >
-          <PositionSwitch />
-        </button>
-      </Tooltip>
-      <Tooltip title="Delete Fields">
-        <button
-          className="bg-red-400 p-2 disabled:hidden hover:bg-red-500 hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
-          disabled={inputTagsArray.length < 2}
-          onClick={() => DeleteLastInput()}
-        >
-          <DeleteFields />
-        </button>
-              </Tooltip>
+        <Tooltip title="Add More Fields">
+          <button
+            className="mr-4 bg-blue-400 p-2 hover:bg-blue-500  hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
+            onClick={() => AddNewInputs()}
+          >
+            <AddFields />
+          </button>
+        </Tooltip>
+        <Tooltip title="Change Position">
+          <button
+            className="mr-4 p-2 bg-gray-500 hover:bg-gray-600 hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
+            onClick={() => {
+              setSection_Alignment(section_align == "left" ? "right" : "left");
+              ChangePosition(
+                section_align == "left" ? "right" : "left",
+                section_id
+              );
+            }}
+          >
+            <PositionSwitch />
+          </button>
+        </Tooltip>
+        <Tooltip title="Delete Fields">
+          <button
+            className="bg-red-400 p-2 disabled:hidden hover:bg-red-500 hover:shadow-lg hover:-translate-y-0.5 ease-in duration-75  rounded-lg"
+            disabled={inputTagsArray.length < 2}
+            onClick={() => DeleteLastInput()}
+          >
+            <DeleteFields />
+          </button>
+        </Tooltip>
       </div>
 
       {inputTagsArray.map((item, idx) => {
@@ -182,108 +172,109 @@ const ContactComponent = ({ section_id }) => {
           section_sub_header,
           sub_header_detail,
           item.input_id,
-          section_id,
-          section_align
+          section_id
         );
       })}
     </div>
   );
 };
-export default ContactComponent;
 
 const ProjectExpViewElement = (
   header_para,
   sub_header_para,
   details_para,
   tag_id,
-  section_id,
-  section_align
+  section_id
 ) => {
-  let header = header_para || "contact";
-  let sub_header = sub_header_para || "email";
-  let details = details_para || "myname@mail.com";
-  let align = section_align || "right";
+  let header = header_para || "Section Header";
+  let sub_header = sub_header_para || "Sub Header";
+  let details = details_para || "some details";
 
-  const resumeForm = document.getElementById(`template-body-left`);
+  const resumeForm = document.getElementById("template-body");
   let parentDiv;
-  if (!document.getElementById(`${section_id}_ContactComponent`)) {
+  if (!document.getElementById(`${section_id}_ProjectExpComponent`)) {
     parentDiv = document.createElement("div"); // parent div for the input
-    parentDiv.setAttribute("id", `${section_id}_ContactComponent`); // setting the id
+    parentDiv.setAttribute("id", `${section_id}_ProjectExpComponent`); // setting the id
     parentDiv.setAttribute("class", "relative w-auto pb-5");
     const node = document.createTextNode("");
     parentDiv.appendChild(node);
   } else {
-    parentDiv = document.getElementById(`${section_id}_ContactComponent`);
+    parentDiv = document.getElementById(`${section_id}_ProjectExpComponent`);
   }
 
-  if (!document.getElementById(`${section_id}_ContactHeaderElement`)) {
+  if (!document.getElementById(`${section_id}_XpHeaderElement`)) {
     const HeaderElement = document.createElement("h1");
+    const HeaderElementDiv = document.createElement("div");
+    HeaderElementDiv.setAttribute(
+      "class",
+      "w-full py-2 pl-2 rounded-lg bg-gradient-to-r from-zinc-600 to-white to-95%"
+    );
     HeaderElement.setAttribute(
       "class",
-      "text-[20px] font-bold text-white capitalize"
+      "text-xl font-bold text-white capitalize"
     );
-    HeaderElement.setAttribute("id", `${section_id}_ContactHeaderElement`);
+    HeaderElement.setAttribute("id", `${section_id}_XpHeaderElement`);
     HeaderElement.textContent = `${header}`;
-    parentDiv.appendChild(HeaderElement);
+    HeaderElementDiv.appendChild(HeaderElement);
+    parentDiv.appendChild(HeaderElementDiv);
   } else {
     document.getElementById(
-      `${section_id}_ContactHeaderElement`
+      `${section_id}_XpHeaderElement`
     ).textContent = `${header}`;
   }
 
-  if (
-    !document.getElementById(section_id + "_contactSubHeaderElement_" + tag_id)
-  ) {
+  if (!document.getElementById(section_id + "_subHeaderElement_" + tag_id)) {
     const subHeaderElement = document.createElement("p");
-    subHeaderElement.setAttribute("class", "pt-2 font-medium text-gray-500 text-[16px] capitalize");
+    subHeaderElement.setAttribute(
+      "class",
+      "pt-2 text-[18px] font-medium capitalize"
+    );
     subHeaderElement.setAttribute(
       "id",
-      section_id + "_contactSubHeaderElement_" + tag_id
+      section_id + "_subHeaderElement_" + tag_id
     );
-    subHeaderElement.innerHTML = Point("gray") + `${sub_header}`;
+    subHeaderElement.innerHTML = Point("#52525B") + `${sub_header}`;
     parentDiv.appendChild(subHeaderElement);
   } else {
     document.getElementById(
-      section_id + "_contactSubHeaderElement_" + tag_id
-    ).innerHTML = Point("gray") + `${sub_header}`;
+      section_id + "_subHeaderElement_" + tag_id
+    ).innerHTML = Point("#52525B") + `${sub_header}`;
   }
 
-  if (
-    !document.getElementById(section_id + "_contactDetailsElement_" + tag_id)
-  ) {
+  if (!document.getElementById(section_id + "_detailsElement_" + tag_id)) {
     const headerDetail = document.createElement("p");
-    headerDetail.setAttribute("class", "relative font-bold text-[14px] text-gray-500 text-justify");
     headerDetail.setAttribute(
-      "id",
-      section_id + "_contactDetailsElement_" + tag_id
+      "class",
+      "pb-2 relative text-[14px] capitalize text-justify text-gray-400 pl-1"
     );
+    headerDetail.setAttribute("id", section_id + "_detailsElement_" + tag_id);
     headerDetail.innerHTML = Symbol("para_space") + `${details}`;
     parentDiv.appendChild(headerDetail);
   } else {
     document.getElementById(
-      section_id + "_contactDetailsElement_" + tag_id
+      section_id + "_detailsElement_" + tag_id
     ).innerHTML = Symbol("para_space") + `${details}`;
   }
 
   if (
     resumeForm &&
-    !document.getElementById(`${section_id}_ContactComponent`)
+    !document.getElementById(`${section_id}_ProjectExpComponent`)
   ) {
     resumeForm.appendChild(parentDiv);
   }
 };
 
+export default ProjectExpComponent;
+
 const ChangePosition = (align, section_id) => {
   const resumeForm_L = document.getElementById(`template-body-left`);
   const resumeForm_R = document.getElementById(`template-body-right`);
-  const parentDiv = document.getElementById(`${section_id}_ContactComponent`);
+  const parentDiv = document.getElementById(
+    `${section_id}_ProjectExpComponent`
+  );
   if (align == "left") {
-    const _ContactHeaderElement = document.getElementById(`${section_id}_ContactHeaderElement`)
-    _ContactHeaderElement.classList.replace('text-indigo-900','text-white')
     resumeForm_L.appendChild(parentDiv);
   } else {
-    const _ContactHeaderElement = document.getElementById(`${section_id}_ContactHeaderElement`)
-    _ContactHeaderElement.classList.replace('text-white', 'text-indigo-900')
     resumeForm_R.appendChild(parentDiv);
   }
 };
