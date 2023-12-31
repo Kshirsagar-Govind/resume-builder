@@ -22,7 +22,7 @@ export default () => {
             className="relative menu-card bg-blue-300 w-[15vw] h-[45vh] hover:shadow-md hover:-translate-y-1 eas-in duration-100"
           >
             <button className="absolute bottom-0 p-5 text-white font-bold text-[14px] w-full bg-blue-400">
-              View My Documents
+              View My Documents (Working on)
             </button>
           </div>
         </Link>
@@ -32,20 +32,20 @@ export default () => {
             className="relative menu-card bg-blue-300 w-[15vw] h-[45vh] hover:shadow-md hover:-translate-y-1 eas-in duration-100"
           >
             <button className="absolute bottom-0 p-5 text-white font-bold text-[14px] w-full bg-blue-400">
-              Create Some Notes
+              Create Some Notes (Working on)
             </button>
           </div>
         </Link>
-        <Link to="#">
+        {/* <Link to="#">
           <div
             id="menu-card-1"
             className="relative menu-card bg-blue-300 w-[15vw] h-[45vh] hover:shadow-md hover:-translate-y-1 eas-in duration-100"
           >
             <button className="absolute bottom-0 p-5 text-white font-bold text-[14px] w-full bg-blue-400">
-              Nothing
+              Nothing (Working on)
             </button>
           </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
