@@ -9,7 +9,7 @@ export default () => {
         <Link to="/templates">
           <div
             id="menu-card-1"
-            className="relative menu-card bg-blue-300 w-[15vw] h-[45vh] hover:shadow-md hover:-translate-y-1 eas-in duration-100"
+            className="relative menu-card border-2 border-blue-400 bg-blue-300 w-[15vw] h-[45vh] hover:shadow-md hover:-translate-y-1 eas-in duration-100"
           >
             <button className="absolute bottom-0 p-5 text-white font-bold text-[14px] w-full bg-blue-400">
               Create My Resume
@@ -18,7 +18,7 @@ export default () => {
         </Link>
         <Link to="#">
           <div
-            id="menu-card-1"
+            id="menu-card-2"
             className="relative menu-card bg-blue-300 w-[15vw] h-[45vh] hover:shadow-md hover:-translate-y-1 eas-in duration-100"
           >
             <button className="absolute bottom-0 p-5 text-white font-bold text-[14px] w-full bg-blue-400">
@@ -28,7 +28,7 @@ export default () => {
         </Link>
         <Link to="#">
           <div
-            id="menu-card-1"
+            id="menu-card-3"
             className="relative menu-card bg-blue-300 w-[15vw] h-[45vh] hover:shadow-md hover:-translate-y-1 eas-in duration-100"
           >
             <button className="absolute bottom-0 p-5 text-white font-bold text-[14px] w-full bg-blue-400">

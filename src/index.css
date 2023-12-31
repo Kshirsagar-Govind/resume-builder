@@ -71,3 +71,10 @@ html{
 label,input,textarea{
   font-size: 14px;
 }
+
+#menu-card-1{
+  background-image: url("https://static-cse.canva.com/blob/566484/modernresumes.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+
+}
