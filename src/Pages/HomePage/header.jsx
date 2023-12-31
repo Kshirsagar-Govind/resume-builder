@@ -31,7 +31,7 @@ const Header = () => {
             <h1 className="text-2xl ">Resume Builder</h1>
           </div>
         </a>
-        <div className="profile-section items-center flex ">
+        {/* <div className="profile-section items-center flex ">
           <div className="mx-2 rounded-[100%] bg-gray-200 p-2 shadow-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ const Header = () => {
               <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
             </svg>
           </div>
-        </div>
+        </div> */}
       </div>
       <br />
       <br />
